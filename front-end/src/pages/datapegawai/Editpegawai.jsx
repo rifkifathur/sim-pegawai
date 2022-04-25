@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import Button from '../components/Button';
-import { fetchData } from '../redux/pegawai/PegawaiAction';
+import Button from '../../components/Button';
+import { fetchData } from '../../redux/pegawai/PegawaiAction';
 
 
 const Editpegawai = () => {
@@ -54,17 +54,15 @@ const Editpegawai = () => {
         })
     }
 
-    console.log(forms)
-
     return (
         <div className='fixed w-[100%] h-full bg-black top-0 bg-opacity-50'>
             <div className='mx-auto my-14 w-[50%] bg-white rounded-sm'>
-                <header className='font-bold border-b p-3 border-gray-400'>Tambah pegawai</header>
+                <header className='font-bold border-b p-3 border-gray-400'>Edit pegawai</header>
                 <form onSubmit={handleSubmit}>
                     <div className='p-3 flex flex-wrap'>
                         <label htmlFor='foto' className='basis-1/4'>Foto</label>
                         <input type='file' name='foto' id='foto' onChange={handleChange} className='basis-1/2' />
-                        <img src={`http://127.0.0.1:8000/images/${forms.foto}`} alt="tes" />
+                        <img src={`http://127.0.0.1:8000/images/${forms.foto}`} alt="tes" className='mx-32 my-2'/>
                     </div>
                     <div className='p-3 flex'>
                         <label htmlFor="nama" className='basis-1/4'>Nama</label>

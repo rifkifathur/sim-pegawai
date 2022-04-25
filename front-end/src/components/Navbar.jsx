@@ -16,7 +16,7 @@ const Navbar = (props) => {
         document.addEventListener("click", outside);
 
         return () => {
-            document.removeEventListener("clic", outside);
+            document.removeEventListener("click", outside);
         }
     }, [drop])
 
@@ -35,7 +35,7 @@ const Navbar = (props) => {
                     <p>{user?.name}</p>
                     <img src="/assets/drop-icon.svg" alt="" className='mx-3 cursor-pointer' onClick={() => setDrop(!drop)} ref={ref} />
                     {drop &&
-                        <button className="absolute -bottom-5 bg-black text-white p-2" onClick={logout}>Logout</button>
+                        <button className="absolute -bottom-5 text-white bg-[#081A51] rounded-sm p-2" onClick={logout}>Logout</button>
                     }
                 </div>
             </div>

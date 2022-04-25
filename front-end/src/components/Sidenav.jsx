@@ -1,26 +1,34 @@
 import { NavLink } from "react-router-dom";
 
-const sideList = [
-    {
-        id: 1,
-        txt: 'Dashboard',
-        icon: '/assets/dash-icon.svg',
-        link: '/dashboard'
-    },
-    {
-        id: 2,
-        txt: 'Data pegawai',
-        icon: '/assets/pegawai-icon.svg',
-        link: '/datapegawai'
-    },
-    {
-        id: 3,
-        txt: 'Data jabatan',
-        icon: '/assets/jabatan-icon.svg',
-        link: '/datajabatan'
-    }
-]
 const Sidenav = (props) => {
+    const sideList = [
+        {
+            id: 1,
+            txt: 'Dashboard',
+            icon: '/assets/dash-icon.svg',
+            link: '/dashboard'
+        },
+        {
+            id: 2,
+            txt: 'Data pegawai',
+            icon: '/assets/pegawai-icon.svg',
+            link: '/datapegawai'
+        },
+        // {
+        //     id: 3,
+        //     txt: 'Data jabatan',
+        //     icon: '/assets/jabatan-icon.svg',
+        //     link: '/datajabatan'
+        // },
+        {
+            id: 4,
+            txt: 'Pengaturan',
+            icon: '/assets/jabatan-icon.svg',
+            link: '/pengaturan'
+        }
+    
+    ]
+
     const { handleSide, valueSide } = props;
     
     const handleHide = () => {

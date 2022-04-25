@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import Main from '../components/Main';
-import Sidenav from '../components/Sidenav';
-import Navbar from '../components/Navbar';
+import Main from '../../components/Main';
+import Sidenav from '../../components/Sidenav';
+import Navbar from '../../components/Navbar';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../redux/pegawai/PegawaiAction';
-import Container from '../components/Container';
-import Header from '../components/Header';
-import Button from '../components/Button';
+import { fetchData } from '../../redux/pegawai/PegawaiAction';
+import Container from '../../components/Container';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
 
 const Datapegawai = () => {
 
     const [side, setSide] = useState(true);
-    const thead = ["No", "Foto", "Nama", "Jenis kelamin", "Tanggal Lahir", "Alamat", "Aksi"];
+    const thead = ["No", "Foto", "Nama", "Jenis kelamin", "Tanggal Lahir", "Alamat", "Jabatan", "Aksi"];
     const dispatch = useDispatch();
 
     const handleSide = (hideValue) => {
@@ -65,6 +65,7 @@ const Datapegawai = () => {
                                                 <td className='border border-gray-200 px-2'>{item.jk}</td>
                                                 <td className='border border-gray-200 px-2'>{item.tgl_lahir}</td>
                                                 <td className='border border-gray-200 px-2'>{item.alamat}</td>
+                                                <td className='border border-gray-200 px-2'>{item.nama_jabatan}</td>
                                                 <td className='border border-gray-200 px-2'>
                                                     <div className='flex'>
                                                         <Link to={`ubah/${item.id}`}>
