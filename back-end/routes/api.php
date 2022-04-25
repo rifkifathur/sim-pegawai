@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JabatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::post('/pegawai/create', [PegawaiController::class, 'store']);
 Route::get('/pegawai/{pegawaiId}', [PegawaiController::class, 'show']);
 Route::put('/pegawai/{pegawaiId}', [PegawaiController::class, 'update']);
 Route::delete('/pegawai/{pegawaiId}', [PegawaiController::class, 'destroy']);
+
+Route::get('/jabatan', [JabatanController::class, 'index']);
+Route::post('/jabatan/create', [JabatanController::class, 'store']);
+Route::get('/jabatan/{jabatanId}', [JabatanController::class, 'show']);

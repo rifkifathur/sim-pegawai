@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -14,16 +15,20 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::leftJoin('jabatan', 'jabatan.id_jabatan', '=', 'pegawai.id_jabatan')
+        ->get();
         $jkL = Pegawai::where('jk', 'L')->count('jk');
         $jkP = Pegawai::where('jk', 'P')->count('jk');
         $totalPegawai = Pegawai::count('id');
+
+        $jabatan = Jabatan::all();
 
         return response()->json([
             'pegawai' => $pegawai,
             'total_pegawai' => $totalPegawai,
             'jk_L' => $jkL,
-            'jk_p' => $jkP
+            'jk_p' => $jkP,
+            'jabatan' => $jabatan
         ]);
     }
 
@@ -46,6 +51,7 @@ class PegawaiController extends Controller
         $pegawai->jk = $request->input('jk');
         $pegawai->tgl_lahir = $request->input('tgl_lahir');
         $pegawai->alamat = $request->input('alamat');
+        $pegawai->id_jabatan = $request->input('id_jabatan');
         
         $pegawai->save();
         return $pegawai;
