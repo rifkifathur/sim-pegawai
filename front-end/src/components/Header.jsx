@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Header = (props) => {
+const Header = ({children}) => {
     return (
         <header className='font-bold text-xl my-4 p-2 border-b border-gray-400'>
-            {props.children}
+            {children}
         </header>
     );
 };

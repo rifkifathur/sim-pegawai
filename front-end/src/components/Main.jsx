@@ -1,10 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Main = (props) => {
-    const { side } = props
+const Main = ({children}) => {
+    const side = useSelector(state => state.showSideNav.showSideNav);
     return (
-        <div className={side ? 'w-3/4 mx-52' : 'w-auto mx-12'}>
-            {props.children}
+        <div className={side ? 'w-5/6 mx-12 md:mx-52 my-20' : 'w-auto mx-12 my-20'}>
+            {children}
         </div>
     );
 };

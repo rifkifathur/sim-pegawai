@@ -9,7 +9,7 @@ const Tabnav = ({handleTab}) => {
         <>
             <ul className='flex bg-slate-400 border'>
                     <li className='p-2 border' onClick={()=>tabClick(1)}>Jabatan</li>
-                    <li className='p-2 border' onClick={()=>tabClick(2)}>Department</li>
+                    <li className='p-2 border' onClick={()=>tabClick(2)}>Gaji pokok</li>
             </ul>
         </>
     );

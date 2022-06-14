@@ -8,11 +8,11 @@ const Login = () => {
     const [login, setLogin] = useState({});
     const dispatch = useDispatch(); 
 
-    useEffect(() => {
-        if (localStorage.getItem('user-info')) {
-            navigate("/dashboard");
-        }
-    },[navigate])
+    // useEffect(() => {
+    //     if (localStorage.getItem('user-info')) {
+    //         navigate("/dashboard");
+    //     }
+    // },[navigate])
 
     const handleLogin = (e) => {
         setLogin({
@@ -37,6 +37,7 @@ const Login = () => {
         if (response.error) {
             localStorage.setItem('user-info', JSON.stringify(response))
             navigate('/');
+            dispatch(User(response));
         } else if (response.name) {
             localStorage.setItem('user-info', JSON.stringify(response))
             navigate('/dashboard');

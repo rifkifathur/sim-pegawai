@@ -10,10 +10,10 @@ export const fetchLoading = () =>{
     }
 }
 
-export function fetchData() {
+export function fetchData(pagi) {
     return async (dispatch) => {
         dispatch(fetchLoading());
-        const req = await fetch(`http://127.0.0.1:8000/api/pegawai`);
+        const req = await fetch(`http://127.0.0.1:8000/api/pegawai?page=${pagi}`);
         const res = await req.json();
         dispatch(fetchPegawai(res));
     }

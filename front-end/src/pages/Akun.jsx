@@ -1,55 +1,56 @@
-import { useState } from 'react';
-import Main from '../../components/Main';
-import Sidenav from '../../components/Sidenav';
-import Navbar from '../../components/Navbar';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../../redux/pegawai/PegawaiAction';
-import Container from '../../components/Container';
-import Header from '../../components/Header';
-import Button from '../../components/Button';
-import Tambahpegawai from './Tambahpegawai';
-import Editpegawai from './Editpegawai';
-const Datapegawai = () => {
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Button from '../components/Button';
+import Container from '../components/Container';
+import Header from '../components/Header';
+import Main from '../components/Main';
+import Navbar from '../components/Navbar';
+import Sidenav from '../components/Sidenav';
 
-    const [tambah, setTambah] = useState(false);
-    const [edit, setEdit] = useState(false);
-    const [editId, setEditId] = useState(false);
-
+const Akun = () => {
     const thead = ["No", "Foto", "NIK", "Nama", "Jenis kelamin", "Tanggal Lahir", "Alamat", "Jabatan", "Aksi"];
-    const dispatch = useDispatch();
 
-    const handleEdit = (id) => {
-        setEdit(!edit);
-        setEditId(id)
-    }
-    const handleDelete = async (id) => {
-        const request = await fetch(`http://127.0.0.1:8000/api/pegawai/${id}`, {
-            method: 'DELETE',
-        });
-        await request;
-        dispatch(fetchData())
-    }
-    console.log(editId)
     const data = useSelector(state => state.pegawai.pegawai);
     const bool = useSelector(state => state.pegawai.loading);
 
+    const handleEdit = () => {
+
+    }
+
+    const handleDelete = () => {
+
+    }
     return (
         <>
-            <Navbar header='Data pegawai' />
+            <Navbar header='Akun' />
             <Sidenav />
             <Main>
                 <Container>
                     <Header>
-                        Data pegawai
+                        Akun
                     </Header>
+                    <form onSubmit={null}>
+                        <div className='p-3 flex'>
+                            <label htmlFor="nama" className='basis-1/4'>Nama</label>
+                            <input type='text' name='nama_pegawai' id='nama_pegawai' className='border border-gray-400' onChange={null} />
+                        </div>
+                        <div className='p-3 flex'>
+                            <label htmlFor="nama_pengguna" className='basis-1/4'>Nama Pengguna</label>
+                            <input type='text' name='nama_pengguna' id='nama_pengguna' className='border border-gray-400' onChange={null} />
+                        </div>
+                        <div className='p-3 flex'>
+                            <label htmlFor="password" className='basis-1/4'>Nama Pengguna</label>
+                            <input type='password' name='password' id='password' className='border border-gray-400' onChange={null} />
+                        </div>
+                        <div className='p-3 flex justify-end'>
+                            <Button>Simpan</Button>
+                            <Button onClick={() => null}>Batal</Button>
+                        </div>
+                    </form>
                     {bool ? (
                         <p>loading</p>
                     ) : (
                         <>
-                            <Button onClick={() => setTambah(!tambah)}>Tambah</Button>
-                            {data.pegawai && data.pegawai.links.map((item,i) => {
-                                return <span onClick={() => dispatch(fetchData(i))}>{i}</span>
-                            })}
                             <div className='overflow-x-auto'>
                                 <table className='border border-gray-400 my-4'>
                                     <thead className='bg-[#E6F3FF]'>
@@ -62,7 +63,7 @@ const Datapegawai = () => {
                                     <tbody>
                                         {data.pegawai && data.pegawai.data.map((item, i) => {
                                             return (
-                                                <tr key={item.id_pegawai} className={i%2 !== 0 && `bg-slate-200`}>
+                                                <tr key={item.id_pegawai} className={i % 2 !== 0 && `bg-slate-200`}>
                                                     <td className='px-2 border-y border-r border-gray-300 text-xs'>{i + 1}</td>
                                                     <td className='px-2 py-4 border-y border-r border-gray-300 text-xs'><img src={`http://127.0.0.1:8000/images/${item.foto}`} alt="tes" /></td>
                                                     <td className='px-2 border-y border-r border-gray-300 text-xs'>{item.nik}</td>
@@ -73,7 +74,7 @@ const Datapegawai = () => {
                                                     <td className='px-2 border-y border-r border-gray-300 text-xs'>{item.nama_jabatan}</td>
                                                     <td className='px-12 md:px-6 border-y border-l border-gray-300 text-xs'>
                                                         <div className='flex'>
-                                                            <img className="cursor-pointer w-4 mx-2" src="./assets/edit.svg" alt="Edit Logo" onClick={() => handleEdit(item.id_pegawai)}/>
+                                                            <img className="cursor-pointer w-4 mx-2" src="./assets/edit.svg" alt="Edit Logo" onClick={() => handleEdit(item.id_pegawai)} />
                                                             <img className="cursor-pointer w-4 mx-2" src="./assets/delete.svg" alt="Remove Logo" onClick={() => handleDelete(item.id_pegawai)} />
                                                         </div>
                                                     </td>
@@ -87,10 +88,8 @@ const Datapegawai = () => {
                     )}
                 </Container>
             </Main>
-            {tambah && <Tambahpegawai tambah={(tambah) => setTambah(tambah)} />}
-            {edit && <Editpegawai editId={editId} edit={(edit) => setEdit(edit)} />}
         </>
     );
 };
 
-export default Datapegawai;
+export default Akun;
