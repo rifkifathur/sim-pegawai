@@ -10,5 +10,5 @@ class Pegawai extends Model
     use HasFactory;
 
     protected $table = 'pegawai';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_pegawai';
 }
